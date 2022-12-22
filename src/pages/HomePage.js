@@ -1,5 +1,12 @@
-export default function HomePage (props) {
+import NavTop from '../components/NavTop'
+
+
+export default function HomePage(props) {
     return (
-        <h1>Home Page</h1>
+        <div>
+            <NavTop />
+            <h1>Home Page</h1>
+        </div>
+
     )
 }
