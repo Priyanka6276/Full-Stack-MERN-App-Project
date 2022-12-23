@@ -12,15 +12,17 @@ import { Routes, Route } from "react-router-dom"
 import { getUser } from "./utilities/users-service"
 
 function App() {
-  // const [user, setUser] = useState(getUser())
+  const [user, setUser] = useState(getUser())
 
 
   return (
     <main className='App'>
       <Routes>
-        <Route path="*" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/user/signup" element={<SignUpPage />} />
+        <Route path="/user/login" element={<LoginPage />} />
       </Routes>
-      {/* {
+      {
         user ? //if user is logged in go to New Order Page otherwise go to Auth Page
           <>
             <NavBar name= { user.name } setUser={setUser}/>
@@ -31,11 +33,8 @@ function App() {
             </Routes>
           </>
           :
-          // <AuthPage setUser={setUser}/>
-          <Routes>
-            <Route path="/user/login" element={<LoginPage />} />
-          </Routes>
-      } */}
+          <AuthPage setUser={setUser}/>
+      }
     </main>
   );
 }
