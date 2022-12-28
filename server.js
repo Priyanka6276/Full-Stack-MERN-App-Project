@@ -7,6 +7,9 @@ require("./config/database")
 const app = express()
 const methodOverride = require('method-override')
 const vocabController = require("./controllers/vocabController")
+const session = require("express-session")
+const MongoStore = require("connect-mongo")
+
 
 
 app.use(logger('dev'))
@@ -27,6 +30,14 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride("_method"))
 app.use(express.static('public'))
+app.use(
+    session({
+      secret: process.env.SECRET,
+      store: MongoStore.create({ mongoUrl: process.env.DATABASE_URL }),
+      saveUninitialized: true,
+      resave: false,
+    })
+  )
 
 
 

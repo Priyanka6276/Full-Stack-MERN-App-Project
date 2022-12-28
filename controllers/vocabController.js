@@ -27,93 +27,76 @@ router.get("/dashboard/seed", (req,res) => {
 })
 
 //Index
-router.get("/vocab", (req,res) => {
-    Vocab.find({}, (error, allVocabs) => {
-        if(!error){
-            res
-            .status(200)
-            .render("pages/VocabListPage", {
-                vocabs: allVocabs
-            })
-        } else {
-            res
-            .status(400)
-            .send(error)
-        }
-    })
+router.get("/vocab", async (req,res) => {
+    try{
+        const vocab = await Vocab.find({email: req.session.email})
+        res.render("pages/VocabListPage")
+    } catch (err) {
+        res.json({ err })
+    }
 })
 
 //New 
-router.get("/vocab", (req,res) => {
+router.get("/vocab/new", (req,res) => {
     res
-    .render("pages/VocabListPage")
+    .render("pages/NewVocabPage")
 })
 
 //Delete
 router.delete("/vocab", (req,res) => {
-    Vocab.findByIdAndDelete(req.params.id, (err,data) => {
+    const id = req.params.id
+    Vocab.findByIdAndDelete(id)
+    .then((vocab) => {
         res.redirect("/vocab")
+    })
+    .catch((error) => {
+        res.json({ error })
     })
 })
 
 //Update
-router.put("/vocab", (req,res) => {
-    Vocab.findByIdAndUpdate(req.params.id, req.body, (err, updatedVocab) => {
-        if(!err){
-            res
-            .status(200)
-        } else {
-            res
-            .status(400)
-            .send(err)
-        }
-    })
+router.put("/vocab/:id", async (req,res) => {
+    try {
+        const id = req.params.id
+        await Vocab.findByIdAndUpdate(id, req.body)
+        res.redirect(`/vocab/${id}`)
+    } catch (err) {
+        res.json({ err })
+    }
 })
 
 //Create
-router.post("/vocab", (req,res) => {
-    Vocab.create(req.body, (error, createdVocab) => {
-        if(!error) {
-            res
-            .status(200)
-        } else {
-            res
-            .status(400)
-            .send(error)
-        }
-    })
+router.post("/vocab", async (req,res) => {
+    try{
+        req.body.email = req.session.email
+        const createdVocab = await Vocab.create(req.body)
+        res.redirect("/vocab")
+    } catch(err) {
+        res.json({ err })
+    }
 })
 
 //Edit
-router.get("/vocab", (req,res) => {
-    Vocab.findById(req.params.id, (err, foundVocab) => {
-        if(!err) {
-            res
-            .status(200)
-            .render("pages/VocabListPage", {vocab: foundVocab})
-        } else {
-            res
-            .status(400)
-            .send({mes: err.message})
-        }
+router.get("/vocab/:id/edit", (req,res) => {
+    const id = req.params.id
+    Vocab.findById(id)
+    .then((vocab) => {
+        res.render("pages/VocabEditPage", { vocab })
+    })
+    .catch((err) => {
+        res.json({ err })
     })
 })
 
 //Show
-router.get("/vocab", (req,res) => {
-    Vocab.findById(req.params.id, (error, foundVocab) => {
-        if (!error) {
-            res
-            .status(200)
-            .render("pages/VocabListPage", {
-                vocab: foundVocab
-            })
-        } else {
-            res
-            .status(400)
-            .send(error)
-        }
-    })
+router.get("/vocab/:id", async (req,res) => {
+    const id = req.params.id
+    try {
+        const vocab = await Vocab.findById(id)
+        res.render("pages/VocabPage", { vocab })
+    } catch (err){
+        res.json({ err })
+    }
 })
 
 module.exports = router

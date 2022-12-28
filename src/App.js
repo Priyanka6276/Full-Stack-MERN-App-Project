@@ -28,7 +28,7 @@ function App() {
             <NavBar name= { user.name } setUser={setUser}/>
             <Routes>
               <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/dashboard/vocab-list" element={<VocabListPage />} />
+              <Route path="/vocab" element={<VocabListPage />} />
             </Routes>
           </>
           :
