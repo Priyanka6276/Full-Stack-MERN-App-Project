@@ -6,9 +6,9 @@ import HomePage from './pages/HomePage'
 import SignUpPage from './pages/SignUpPage'
 import LoginPage from './pages/LoginPage'
 import DashboardPage from './pages/DashboardPage'
-import VocabListPage from "./pages/VocabListPage"
 import { Routes, Route } from "react-router-dom"
 import { getUser } from "./utilities/users-service"
+import WordListPage from './pages/WordListPage'
 
 function App() {
   const [user, setUser] = useState(getUser())
@@ -27,8 +27,8 @@ function App() {
           <>
             <NavBar name= { user.name } setUser={setUser}/>
             <Routes>
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/vocab" element={<VocabListPage />} />
+              <Route path="/dashboard" element={<DashboardPage user={user} setUser={setUser} />} />
+              <Route path="/vocab-list" element={<WordListPage user={user} setUser={setUser} />} />
             </Routes>
           </>
           :

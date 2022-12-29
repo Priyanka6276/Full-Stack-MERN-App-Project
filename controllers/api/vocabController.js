@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const Vocab = require("../models/vocab")
+const Vocab = require("../../models/word")
 
 //Seed Route
 router.get("/dashboard/seed", (req,res) => {

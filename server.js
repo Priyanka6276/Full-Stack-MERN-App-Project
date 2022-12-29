@@ -1,59 +1,39 @@
-const express = require('express')
-const path = require('path')
-const favicon = require('serve-favicon')
-const logger = require('morgan')
-require("dotenv").config()
-require("./config/database")
-const app = express()
-const methodOverride = require('method-override')
-const vocabController = require("./controllers/vocabController")
-const session = require("express-session")
-const MongoStore = require("connect-mongo")
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
 
+// Always require and configure near the top
+require('dotenv').config()
 
+require("./config/database");
 
-app.use(logger('dev'))
-app.use(express.json())
+const app = express();
 
+app.use(logger('dev'));
+app.use(express.json());
 
-
+// Configure both serve-favicon & static middleware
+// to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")))
 app.use(express.static(path.join(__dirname, "build")))
+app.use(require('./config/checkToken'))
 
-app.use(require("./config/checkToken"))
-app.use((req, res, next) => {
-    console.log("I'm running for all routes")
-    console.log("1.middleware")
-    next()
-})
+// Put API routes here, before the "catch all" route
+app.use('/api/users', require("./routes/api/users"))
 
-app.use(express.urlencoded({extended: false}))
-app.use(methodOverride("_method"))
-app.use(express.static('public'))
-app.use(
-    session({
-      secret: process.env.SECRET,
-      store: MongoStore.create({ mongoUrl: process.env.DATABASE_URL }),
-      saveUninitialized: true,
-      resave: false,
-    })
-  )
+const ensureLoggedIn = require('./config/ensureLoggedIn');
+app.use('/api/words', ensureLoggedIn, require('./routes/api/words'));
 
-
-
-app.use("/api/users", require("./routes/api/users"))
-
+// The following "catch all" route (note the *) is necessary
+// to return the index.html on all non-AJAX requests
 app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"))
+  res.sendFile(path.join(__dirname, "build", "index.html"))
 })
-
-app.use("/vocab", vocabController)
-
-
 
 const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
-    console.log(`Express is running on port: ${PORT}`)
+  console.log(`Express app is running on port: ${PORT}`)
 })
 

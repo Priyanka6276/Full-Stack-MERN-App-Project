@@ -1,7 +1,8 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
+require("./category")
 
-const vocabSchema = new Schema({
+const wordSchema = new Schema({
     language: {
         type: String,
         required: true,
@@ -14,8 +15,11 @@ const vocabSchema = new Schema({
         type: String,
         required: true
     }
+},
+{
+    timestamps: true
 })
 
-const Vocab = mongoose.model("Vocab", vocabSchema)
+const Word = mongoose.model("word", wordSchema)
 
-module.exports = Vocab
+module.exports = Word
