@@ -11,9 +11,9 @@ export default function NavBar({ name, setUser }) {
     }
     return (
         <nav>
-            <Link to="/orders">Order History</Link>
+            <Link to="/dashboard">Dashboard</Link>
             &nbsp; | &nbsp;
-            <Link to="/orders/new">New Order</Link>
+            <Link to="/vocab-list">Vocab List</Link>
             &nbsp; | &nbsp;
             <Link to="" onClick={handleLogout}>Log Out</Link>
             &nbsp; | &nbsp;
