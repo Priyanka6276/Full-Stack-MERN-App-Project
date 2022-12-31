@@ -1,18 +1,10 @@
-import AddNewWord from "../components/AddNewWord"
-import WordList from "../components/WordList"
-import { useState } from "react"
-import words from "../data"
+import ShowWordList  from "../components/ShowWordList"
 
-export default function WordListPage () {
-    const [vocabWord, setVocabWord] = useState(words)
+export default function WordListPage (){
     return(
-        <div>
-           <AddNewWord />
-            <WordList vocabWord={vocabWord} />
-        </div>
+        <ShowWordList />
     )
 }
-
 
 
 

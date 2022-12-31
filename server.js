@@ -1,28 +1,37 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-
+const express = require('express')
+const path = require('path')
+const favicon = require('serve-favicon')
+const logger = require('morgan')
 require('dotenv').config()
-
-require("./config/database");
+// require("./config/database")
+const connectDB = require("./config/database")
+const bodyParser = require("body-parser")
+const cors = require("cors")
+const mongoose = require("mongoose")
 
 const app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
+const words = require("./routes/api/words")
 
-// Configure both serve-favicon & static middleware
-// to serve from the production 'build' folder
+connectDB()
+
+
+app.use(logger('dev'))
+app.use(express.json({ extended: false }))
+
+app.use(cors({ origin: true, credentials: true}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
+
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")))
 app.use(express.static(path.join(__dirname, "build")))
 app.use(require('./config/checkToken'))
 
-
 app.use('/api/users', require("./routes/api/users"))
+app.use("/api/words", words)
 
-const ensureLoggedIn = require('./config/ensureLoggedIn');
-app.use('/api/words', ensureLoggedIn, require('./routes/api/words'));
+
+
 
 //catch all route
 app.get("/*", (req, res) => {

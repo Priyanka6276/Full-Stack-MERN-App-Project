@@ -9,6 +9,7 @@ import DashboardPage from './pages/DashboardPage'
 import { Routes, Route } from "react-router-dom"
 import { getUser } from "./utilities/users-service"
 import WordListPage from './pages/WordListPage'
+import CreateWordPage from './pages/CreateWordPage'
 
 function App() {
   const [user, setUser] = useState(getUser())
@@ -29,6 +30,7 @@ function App() {
             <Routes>
               <Route path="/dashboard" element={<DashboardPage user={user} setUser={setUser} />} />
               <Route path="/vocab-list" element={<WordListPage user={user} setUser={setUser} />} />
+              <Route path="/create-word" element={<CreateWordPage user={user} setUser={setUser} />} />
             </Routes>
           </>
           :

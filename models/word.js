@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
-require("./category")
+
 
 const wordSchema = new Schema({
     language: {

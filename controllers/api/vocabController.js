@@ -27,7 +27,7 @@ router.get("/dashboard/seed", (req,res) => {
 })
 
 //Index
-router.get("/vocab", async (req,res) => {
+router.get("/vocab-list", async (req,res) => {
     try{
         const vocab = await Vocab.find({email: req.session.email})
         res.render("pages/VocabListPage")
@@ -37,9 +37,9 @@ router.get("/vocab", async (req,res) => {
 })
 
 //New 
-router.get("/vocab/new", (req,res) => {
+router.get("/vocab-list", (req,res) => {
     res
-    .render("pages/NewVocabPage")
+    .render("components/AddNewWord.js")
 })
 
 //Delete
