@@ -7,11 +7,11 @@ const connectDB = require("./config/database")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const mongoose = require("mongoose")
-
 const app = express();
 
 const words = require("./routes/api/words")
 const pages = require("./routes/api/pages")
+
 
 connectDB()
 
@@ -30,6 +30,7 @@ app.use(require('./config/checkToken'))
 app.use('/api/users', require("./routes/api/users"))
 app.use("/api/words", words)
 app.use("/api/pages", pages)
+
 
 
 

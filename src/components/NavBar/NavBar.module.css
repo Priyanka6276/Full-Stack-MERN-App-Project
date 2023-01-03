@@ -1,0 +1,29 @@
+.NavBar {
+    width: 100%;
+    background-color: rgb(222, 205, 182);
+    height: 5rem;
+    display: flex;
+    justify-content: space-around;
+    position: static;
+}
+
+.links {
+    /* border: 2px solid red; */
+    width: 75%;
+    font-size: x-large;
+    display: flex;
+    color: rgb(95, 42, 21) ;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(95, 42, 21);
+    font-weight: bold;
+   
+}
+
+.name {
+    /* border: 2px solid pink; */
+    color: rgb(95, 42, 21);
+}
+

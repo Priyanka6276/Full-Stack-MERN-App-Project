@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import * as usersService from "../utilities/users-service"
+import { Link } from 'react-router-dom'
+import styles from "./LoginForm.module.css"
+import * as usersService from "../../utilities/users-service"
 
 export default function LoginForm({ setUser }) {
   const navigate = useNavigate()
@@ -22,23 +24,29 @@ export default function LoginForm({ setUser }) {
       const user = await usersService.login(credentials)
       setUser(user)
       navigate("/dashboard")
-      
+
     } catch {
       setError('Log In Failed - Try Again')
     }
   }
 
   return (
-    <div>
-      <div className="form-container" onSubmit={handleSubmit}>
+    <div className={styles.login}>
+      <h1>Login</h1>
+      <div className={styles.form} onSubmit={handleSubmit}>
         <form autoComplete="off" >
           <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
+          <input type="text" name="email" value={credentials.email} onChange={handleChange} required /> <br />
           <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          <input type="password" name="password" value={credentials.password} onChange={handleChange} required /> <br />
           <button type="submit">LOG IN</button>
         </form>
       </div>
+      <Link to="/user/signup">
+        <button>
+          Go to Sign Up
+        </button>
+      </Link>
       <p className="error-message">&nbsp;{error}</p>
     </div>
   )

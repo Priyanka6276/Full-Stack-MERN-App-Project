@@ -1,19 +1,21 @@
 const express = require("express")
 const router = express.Router()
 
-const{
+const {
     getAllPages,
-    postCreatePages,
+    deletePage,
     putUpdatePage,
-    deletePage
+    postCreatePage
 } = require("../../controllers/api/page")
 
-router.get("/notebook/pages/:id", getAllPages)
+router.get("/notebook", getAllPages)
 
-router.post("/notebook", postCreatePages)
+router.delete("notebook/:id", deletePage)
 
-router.put("/notebook/pages/:id", putUpdatePage)
+router.put("/notebook/:id",  putUpdatePage)
 
-router.delete("/notebook/pages/:id", deletePage)
+router.post("/notebook", postCreatePage)
+
+
 
 module.exports = router

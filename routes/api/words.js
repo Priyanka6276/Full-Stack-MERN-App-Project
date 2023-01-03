@@ -3,18 +3,18 @@ const router = express.Router()
 
 const {
     getAllWords,
-    postCreateWord,
-    putUpdateWord,
     deleteWord,
+    putUpdateWord,
+    postCreateWord
 } = require("../../controllers/api/word")
 
 router.get("/vocab-list", getAllWords)
 
-router.post("/vocab-list", postCreateWord)
+router.delete("vocab-list/:id", deleteWord)
 
 router.put("/vocab-list/:id",  putUpdateWord)
 
-router.delete("vocab-list/:id", deleteWord)
+router.post("/vocab-list", postCreateWord)
 
 
 

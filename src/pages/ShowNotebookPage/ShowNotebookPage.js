@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
-import http from "../lib/http"
-import formatDate from "../lib/formatDate"
+import http from "../../lib/http"
+import formatDate from "../../lib/formatDate"
 
-const ShowNotebookPage = () => {
+export default function ShowNotebookPage() {
     const { id: pageId } = useParams()
     const [page, setPage] = useState({})
     const navigate = useNavigate()
@@ -35,5 +35,4 @@ const ShowNotebookPage = () => {
     )
 }
 
-export default ShowNotebookPage
 

@@ -19,14 +19,7 @@ const pageSchema = new Schema({
     }
 })
 
-pageSchema.pre("save", (next) => {
-    now = new Date()
-    if(!this.createdAt){
-        this.createdAt = now
-    }
 
-    next()
-})
 
 const Page = mongoose.model("page", pageSchema)
 

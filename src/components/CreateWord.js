@@ -6,7 +6,7 @@ export default function CreateWord(){
     const [data, setData] = useState({ language:"", english:"", category:""})
 
     function handleChange(e) {
-        setData((data) => ({ ...data, [e.target.name]: e.target.value }));
+        setData((data) => ({ ...data, [e.target.language]: e.target.value }));
     }
 
     function handleSubmit(e) {
