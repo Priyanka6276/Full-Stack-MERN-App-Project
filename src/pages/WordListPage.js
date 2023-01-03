@@ -7,8 +7,8 @@ export default function WordListPage() {
     const [words, setWords] = useState([""])
     useEffect(() => {
         async function fetchData() {
-            const { data } = await http.get("/api/words")
-            setWords(data.data.words)
+            const { data } = await http.get("/api/words/vocab-list")
+            setWords(data)
         }
         fetchData()
     }, [])

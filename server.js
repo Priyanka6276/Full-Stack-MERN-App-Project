@@ -4,32 +4,29 @@ const favicon = require('serve-favicon')
 const logger = require('morgan')
 require('dotenv').config()
 const connectDB = require("./config/database")
-const bodyParser = require("body-parser")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const app = express();
-
-const words = require("./routes/api/words")
-const pages = require("./routes/api/pages")
-
-
 connectDB()
+
+const posts = require("./routes/api/post")
 
 
 app.use(logger('dev'))
 app.use(express.json({ extended: false }))
 
 app.use(cors({ origin: true, credentials: true}))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")))
 app.use(express.static(path.join(__dirname, "build")))
 app.use(require('./config/checkToken'))
 
 app.use('/api/users', require("./routes/api/users"))
-app.use("/api/words", words)
-app.use("/api/pages", pages)
+app.use("/api/words", require("./routes/api/words"))
+app.use("/api/pages", require("./routes/api/pages"))
+app.use("/api/posts", posts)
 
 
 

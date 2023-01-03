@@ -5,17 +5,24 @@ const {
     getAllPages,
     deletePage,
     putUpdatePage,
-    postCreatePage
+    postCreatePage,
+    getPage
 } = require("../../controllers/api/page")
 
+//all pages
 router.get("/notebook", getAllPages)
 
-router.delete("notebook/:id", deletePage)
+//a single page
+router.get("/notebook/:id", getPage)
 
-router.put("/notebook/:id",  putUpdatePage)
-
+//create a new page
 router.post("/notebook", postCreatePage)
 
+//update a page
+router.put("/notebook/:id",  putUpdatePage)
+
+//delete a page
+router.delete("/notebook/:id", deletePage)
 
 
 module.exports = router

@@ -3,20 +3,23 @@ import { useParams, useNavigate, Link } from "react-router-dom"
 import http from "../../lib/http"
 import formatDate from "../../lib/formatDate"
 
+
+
+
 export default function ShowNotebookPage() {
     const { id: pageId } = useParams()
     const [page, setPage] = useState({})
     const navigate = useNavigate()
     useEffect(() => {
         async function fetchData() {
-            const { data } = await http.get(`/api/pages/${pageId}`)
-            setPage(data.data.page)
+            const { data } = await http.get(`/api/pages/notebook/${pageId}`)
+            setPage(data)
         }
         fetchData()
     }, [pageId])
 
     const deletePage = async () => {
-        await http.delete(`/api/pages/${pageId}`)
+        await http.delete(`/api/pages/notebook/${pageId}`)
         navigate("/notebook")
     }
 
@@ -24,7 +27,7 @@ export default function ShowNotebookPage() {
         <>
             <h1>{page.title}</h1>
             <div>{formatDate(page.createdAt)}</div>
-            {page.tags?.map((tag) => <span>{tag}</span>)}
+            {page.tags?.map((tag) => <span>{tag}  </span>)}
             <div>{page.entry}</div>
             <div>
                 <Link to={`/notebook/${pageId}/edit`}>Edit</Link>

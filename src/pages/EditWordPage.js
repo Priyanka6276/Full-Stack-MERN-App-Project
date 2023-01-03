@@ -10,8 +10,8 @@ export default function EditWordPage() {
 
     useEffect(() => {
         async function fetchData() {
-            const { data } = await http.get(`/api/words/${wordId}`)
-            reset(data.data.word)
+            const { data } = await http.get(`/api/words/vocab-list/${wordId}`)
+            reset(data)
         }
         fetchData()
     }, [wordId, reset])
@@ -22,7 +22,7 @@ export default function EditWordPage() {
             english,
             category
         }
-        await http.put(`/api/words/${wordId}`, { data: payload })
+        await http.put(`/api/words/vocab-list/${wordId}`, { data: payload })
         navigate(`/vocab-list/${wordId}`)
     }
 

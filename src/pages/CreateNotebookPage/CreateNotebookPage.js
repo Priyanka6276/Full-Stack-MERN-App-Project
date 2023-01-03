@@ -1,6 +1,9 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
-import { useForm } from 'react-hook-form'
+import axios from "axios"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
 import http from "../../lib/http"
+
 
 export default function CreateNotebookPage () {
     const { id: pageId } = useParams()
@@ -13,8 +16,8 @@ export default function CreateNotebookPage () {
             tags: tags.split(",").map((tag) => tag.trim()),
             entry,
         }
-        await http.put(`/api/pages/${pageId}`, { data: payload })
-        navigate(`/notebook/:id`)
+        await http.post(`/api/pages/notebook/`, { data: payload })
+        navigate(`/notebook`)
     }
 
     return(

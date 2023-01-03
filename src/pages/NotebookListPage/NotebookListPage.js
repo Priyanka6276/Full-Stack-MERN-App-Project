@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import http from "../../lib/http"
@@ -8,8 +9,8 @@ export default function NotebookListPage() {
     const [pages, setPages] = useState([""])
     useEffect(() => {
         async function fetchData() {
-            const { data } = await http.get("/api/pages")
-            setPages(data.data.pages)
+            const { data } = await http.get("/api/pages/notebook")
+            setPages(data)
         }
         fetchData()
     }, [])

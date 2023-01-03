@@ -9,23 +9,21 @@ export default function ShowWordPage() {
     const navigate = useNavigate()
     useEffect(() => {
         async function fetchData() {
-            const { data } = await http.get(`/api/words/${wordId}`)
-            setWord(data.data.word)
+            const { data } = await http.get(`/api/words/vocab-list/${wordId}`)
+            setWord(data)
         }
         fetchData()
     }, [wordId])
 
     const deleteWord = async () => {
-        await http.delete(`/api/words/${wordId}`)
+        await http.delete(`/api/words/vocab-list/${wordId}`)
         navigate("/vocab-list")
     }
 
     return(
         <>
-            <h1>{word.title}</h1>
-           
-            {word.tags?.map((tag) => <span>{tag}</span>)}
-            <div>{word.entry}</div>
+            <h1>{word.language}</h1>
+            <div>{word.english}</div>
             <div>
                 <Link to={`/vocab-list/${wordId}/edit`}>Edit</Link>
             </div>

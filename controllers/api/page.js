@@ -24,6 +24,12 @@ exports.postCreatePage = (req,res) => {
     .catch((err) => res.status(400).json({message:"Failed to add Page", error: err.message}))
 }
 
+exports.getPage = (req,res) => {
+    Page.findById(req.params.id)
+    .then((data) => res.json(data))
+    .catch((err) => res.status(404).json({message: "No Page found", error: err.message}))
+}
+
 
 
 

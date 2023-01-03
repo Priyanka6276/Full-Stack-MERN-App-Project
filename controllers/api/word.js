@@ -24,4 +24,10 @@ exports.postCreateWord = (req,res) => {
     .catch((err) => res.status(400).json({message:"Failed to add word", error: err.message}))
 }
 
+exports.getWord = (req,res) => {
+    Word.findById(req.params.id)
+    .then((data) => res.json(data))
+    .catch((err) => res.status(404).json({message: "No Page found", error: err.message}))
+}
+
 

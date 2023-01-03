@@ -10,8 +10,8 @@ export default function EditNotebookPage() {
 
     useEffect(() => {
         async function fetchData() {
-            const { data } = await http.get(`/api/pages/${pageId}`)
-            reset(data.data.page)
+            const { data } = await http.get(`/api/pages/notebook/${pageId}`)
+            reset(data)
         }
         fetchData()
     }, [pageId, reset])
