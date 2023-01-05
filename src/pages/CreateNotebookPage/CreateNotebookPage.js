@@ -1,6 +1,4 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
-import axios from "axios"
-import { useState } from "react"
 import { useForm } from "react-hook-form"
 import http from "../../lib/http"
 
@@ -13,11 +11,12 @@ export default function CreateNotebookPage () {
     const onSubmit = async ({ title, entry, tags }) => {
         const payload = {
             title,
-            tags: tags.split(",").map((tag) => tag.trim()),
+            tags: tags.split(",").map((tag) => tag.trim().toLowerCase()),
             entry,
         }
         await http.post(`/api/pages/notebook/`, { data: payload })
         navigate(`/notebook`)
+       
     }
 
     return(

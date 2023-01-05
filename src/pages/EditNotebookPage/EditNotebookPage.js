@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import http from "../../lib/http"
+import styles from "./EditNotebookPage.module.css"
 
 export default function EditNotebookPage() {
     const { id: pageId } = useParams()
@@ -19,28 +20,42 @@ export default function EditNotebookPage() {
     const onSubmit = async ({ title, entry, tags }) => {
         const payload = {
             title,
-            tags: tags.split(",").map((tag) => tag.trim()),
+            tags: tags.split(",").map((tag) => tag.trim().toLowerCase),
             entry,
         }
-        await http.put(`/api/pages/${pageId}`, { data: payload })
+        await http.put(`/api/pages/notebook/${pageId}`, { data: payload })
         navigate(`/notebook/${pageId}`)
     }
 
 
     return (
         <>
-            <h1>Edit Your Page</h1>
+            <div className={styles.top}>
+                <Link to="/notebook" className={styles.link}>
+                    <button className={styles.back}>
+                        Back to Your Notebook
+                    </button>
+                </Link>
+                <h1>Edit Your Page</h1>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Title</label>
-                <input type="text" placeholder="Enter Title" {...register("title")} />
-                <label>Tags</label>
-                <input type="text" placeholder="Enter tags" {...register("tags")} />
-                <p>Separate tags with ","</p>
-                <label>Entry</label>
-                <input type="text" placeholder="Enter Entry" {...register("entry")} />
-                <button type="submit">Save</button>
+                <div className={styles.form}>
+                    <div className={styles.wordContainer}>
+                        <label>Title</label>
+                        <input type="text" placeholder="Enter Title" {...register("title")} />
+                        <label>Tags</label>
+                        <input type="text" placeholder="Enter tags" {...register("tags")} />
+                        <p>Separate tags with ","</p>
+                    </div>
+                    <div className={styles.notes}>
+                        <label>Entry</label>
+                        <textarea type="text" placeholder="Enter Entry" {...register("entry")} />
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" className={styles.publish}>Save</button>
+                </div>
             </form>
-            <Link to="/notebook">Back to Notebook</Link>
         </>
     )
 }

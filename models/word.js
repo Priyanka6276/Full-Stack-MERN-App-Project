@@ -2,6 +2,8 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 
+
+
 const wordSchema = new Schema({
     language: {
         type: String,
@@ -14,6 +16,9 @@ const wordSchema = new Schema({
     category: {
         type: String,
         required: true
+    },
+    notes: {
+        type:String,
     }
 },
 {

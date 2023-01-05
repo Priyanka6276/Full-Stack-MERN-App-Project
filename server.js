@@ -9,7 +9,7 @@ const mongoose = require("mongoose")
 const app = express();
 connectDB()
 
-const posts = require("./routes/api/post")
+
 
 
 app.use(logger('dev'))
@@ -24,9 +24,11 @@ app.use(express.static(path.join(__dirname, "build")))
 app.use(require('./config/checkToken'))
 
 app.use('/api/users', require("./routes/api/users"))
+
+
 app.use("/api/words", require("./routes/api/words"))
 app.use("/api/pages", require("./routes/api/pages"))
-app.use("/api/posts", posts)
+
 
 
 
