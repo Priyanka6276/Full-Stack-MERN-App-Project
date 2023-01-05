@@ -17,10 +17,10 @@ export default function EditNotebookPage() {
         fetchData()
     }, [pageId, reset])
 
-    const onSubmit = async ({ title, entry, tags }) => {
+    const onSubmit = async ({ title, entry, category}) => {
         const payload = {
             title,
-            tags: tags.split(",").map((tag) => tag.trim().toLowerCase),
+            category,
             entry,
         }
         await http.put(`/api/pages/notebook/${pageId}`, { data: payload })
@@ -43,9 +43,8 @@ export default function EditNotebookPage() {
                     <div className={styles.wordContainer}>
                         <label>Title</label>
                         <input type="text" placeholder="Enter Title" {...register("title")} />
-                        <label>Tags</label>
-                        <input type="text" placeholder="Enter tags" {...register("tags")} />
-                        <p>Separate tags with ","</p>
+                        <label>Category</label>
+                        <input type="text" placeholder="Enter Category" {...register("category")} />
                     </div>
                     <div className={styles.notes}>
                         <label>Entry</label>

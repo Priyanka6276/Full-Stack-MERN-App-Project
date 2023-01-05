@@ -23,7 +23,7 @@ export default function LoginForm({ setUser }) {
     try {
       const user = await usersService.login(credentials)
       setUser(user)
-      navigate("/dashboard")
+      navigate("/")
 
     } catch {
       setError('Log In Failed - Try Again')
@@ -35,18 +35,15 @@ export default function LoginForm({ setUser }) {
       <h1>Login</h1>
       <div className={styles.form} onSubmit={handleSubmit}>
         <form autoComplete="off" >
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required /> <br />
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required /> <br />
-          <button type="submit">LOG IN</button>
+          <div className={styles.wordContainer}>
+            <label>Email</label>
+            <input type="text" name="email" value={credentials.email} onChange={handleChange} required /> <br />
+            <label>Password</label>
+            <input type="password" name="password" value={credentials.password} onChange={handleChange} required /> <br />
+          </div>
+          <button type="submit" className={styles.publish}>LOG IN</button>
         </form>
       </div>
-      <Link to="/user/signup">
-        <button>
-          Go to Sign Up
-        </button>
-      </Link>
       <p className="error-message">&nbsp;{error}</p>
     </div>
   )

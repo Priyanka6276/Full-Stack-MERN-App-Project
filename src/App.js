@@ -29,7 +29,7 @@ function App() {
           <>
             <NavBar name= { user.name } setUser={setUser}/>
             <Routes>
-              <Route path="/dashboard" element={<DashboardPage user={user} setUser={setUser} />} />
+              <Route path="/" element={<DashboardPage user={user} setUser={setUser} />} />
               //==============Vocabulary List==============
               <Route path="/vocab-list" element={<WordListPage user={user} setUser={setUser} />} />
               <Route path="/vocab-list/create-word" element={<CreateWordPage user={user} setUser={setUser} />} />

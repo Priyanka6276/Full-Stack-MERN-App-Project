@@ -19,7 +19,7 @@ export default function NotebookList(props) {
         if (props.input === "") {
             return page
         } else {
-            return page.title.toLowerCase().includes(props.input) || page.tags.includes(props.input) 
+            return page.title.toLowerCase().includes(props.input) || page.category.toLowerCase().includes(props.input) 
         }
     })
 
@@ -42,12 +42,12 @@ export default function NotebookList(props) {
                         }
                     </div>
                     <div className={styles.category}>
-                        <h2>Tags</h2>
+                        <h2>Cateogry</h2>
                         {
                             filteredData.map((page) => {
                                 return (
 
-                                    <h3> {page.tags} </h3>
+                                    <h3> {page.category} </h3>
 
                                 )
                             })

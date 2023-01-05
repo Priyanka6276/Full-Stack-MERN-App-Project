@@ -23,7 +23,7 @@ export default function ShowNotebookPage() {
         await http.delete(`/api/pages/notebook/${pageId}`)
         navigate("/notebook")
     }
-console.log(page)
+
     return (
         <>
             <Link to={`/notebook`} className={styles.link}>
@@ -37,7 +37,7 @@ console.log(page)
                             <h1>{page.title}</h1>
                             <div className={styles.smallerText}>
                             <h4>{formatDate(page.created)}</h4>
-                            <h4 className={styles.word}> Tags: {page.tags?.map((tag) => <span>{tag} </span>)}</h4>
+                            <h4 className={styles.word}> Category: {page.category}</h4>
                             </div>
                         </div>
                         <div className={styles.notes}>{page.entry}</div>

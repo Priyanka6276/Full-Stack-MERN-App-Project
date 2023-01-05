@@ -1,12 +1,35 @@
 .DashboardPage {
-    /* border: 2px solid red */
+   display: flex;
+   width: 100%;
+   justify-content: space-evenly;
+   align-items: center;
 }
 
 .vocabulary {
-    /* border: 2px solid green */
-    
+    background-color: rgb(221, 201, 173);
+    width: 40%;
+    height:40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    margin-top: 2vh;
 }
 
 .notebook {
-    /* border: 2px solid blue */
+    background-color: rgb(221, 201, 173);
+   width: 40%;
+   height: 40vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 2vh;
+}
+
+.DashboardPage h1 {
+    font-size: 5rem;
+}
+
+.link{
+    text-decoration: none;
+    color: rgb(95, 42, 21);
 }

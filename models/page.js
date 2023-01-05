@@ -14,8 +14,9 @@ const pageSchema = new Schema({
         type: String,
         required: true
     },
-    tags: {
-        type:[String]
+    category: {
+        type:String,
+        required:true
     }
 })
 

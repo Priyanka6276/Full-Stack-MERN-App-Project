@@ -5,13 +5,13 @@ export default function DashboardPage(props) {
     return (
         <div className={styles.DashboardPage}>
             <div className={styles.vocabulary}>
-                <Link to="/vocab-list">
-                    <h3>Vocabulary List</h3>
+                <Link to="/vocab-list" className={styles.link}>
+                    <h1>Vocabulary List</h1>
                 </Link>
             </div>
             <div className={styles.notebook}>
-                <Link to="/notebook">
-                    <h3>Notebook</h3>
+                <Link to="/notebook" className={styles.link}>
+                    <h1>Notebook</h1>
                 </Link>
             </div>
         </div>
