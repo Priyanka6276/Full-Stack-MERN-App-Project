@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+# Productivity App Tailored To Foreign Language Learning
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a productivity app with the ability to take notes and store vocabulary words for language learners. It was created using the MERN Stack. Data concerning pages, users, and vocabulary words are sent to MONGOdb. 
 
-## Available Scripts
+## Vocabulary List
+The vocabulary list features allows the user to input their word in their target language with the defintion. The user can also categorize the word which will be displayed in list form. While at the list, the user can search terms by the word, defintion, or category.
 
-In the project directory, you can run:
+## Notebook
+The Notebook was created similarly to the vocabulary list. The user can write down notes about grammar or create journal entries with the notebook. Each page has the date it was created as well as the category, title, and entry itself. On the main notebook page, the user can search terms to find the right page they are looking for.
 
-### `npm start`
+## User Authorization
+Each user must create an account to use the website. The user must input their name, email, and password, which is encrypted to proceed. The name of the user will be displayed when the user logs in. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Issues That Still Need To Be Fixed
+### Tags
+At the beginning the notebook part of the website was to feature tags, where the user can input multiple tags to categorize a page. When the notebook was first created, the tag feature was working. However, at some point during development the server was not recognizing the tags and instead inputting commas. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Translator
+The app was to feature a translation feature. However, problems were being run into with the api, so this feature must be looked into again. 
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Future Development
+Apart from the issues that need to be fixed, I hope to include a flashcard feature to the app so that the user can test their vocabulary knowledge. 

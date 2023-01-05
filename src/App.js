@@ -15,7 +15,6 @@ import EditNotebookPage from './pages/EditNotebookPage/EditNotebookPage'
 import ShowNotebookPage from './pages/ShowNotebookPage/ShowNotebookPage'
 import TranslationPage from './pages/TranslationPage'
 import FlashCardPage from './pages/FlashCardPage'
-import Test from './components/SearchBar/SearchBar'
 
 
 function App() {
@@ -43,7 +42,6 @@ function App() {
 
               <Route path="/translate" element={<TranslationPage user={user} setUser={setUser} />} />
               <Route path="/flashcards" element={<FlashCardPage user={user} setUser={setUser} />} />
-              <Route path="/test" element={<Test user={user} setUser={setUser} />} />
             </Routes>
           </>
           :
